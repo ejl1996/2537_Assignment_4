@@ -180,13 +180,13 @@ const setup = () => {
 
   const startPowerUpMessage = () => {
     powerUpMessageInterval = setInterval(() => {
-      console.log("Power up activated!");
+      alert("Power up activated!");
 
       // Display the power-up message using a popup or any other method you prefer
 
-      // Flip all cards for two seconds
+      // Flip all cards for one seconds
       flipAllCards();
-    }, 10000);
+    }, 500);
   };
 
   // Attach the handleCardClick function to the card click event
