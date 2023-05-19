@@ -1,0 +1,82 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poke Card Game</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- import jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <div id="difficulty" class="btn-group btn-group-toggle m-3" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input type="radio" value="easy" name="options" id="option1" autocomplete="off" checked> Easy
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" value="medium" name="options" id="option2" autocomplete="off"> Medium
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" value="hard" name="options" id="option3" autocomplete="off"> Hard
+      </label>
+    </div>
+    <br>
+    <a href="./index.html"><button class="btn btn-primary" id="reset"> Reset</button></a>
+    <button class="btn btn-primary" id="start">Start!</button>
+    <section id="info">
+      <h2>Total Number of Pairs <span id="total"></span></h2>
+      <h2>Number of Matches <span id="matches"></span></h2>
+      <h2>Number of pair left <span id="left"></span></h2>
+      <h2>Number of Clicks <span id="clicks"></span></h2>
+      <h2>You got <span id="timer"> </span> seconds. <span id="time"></span> second<span id="s">s</span> passed!</h1>
+    </section>
+
+  </header>
+  <div id="container">
+    <div id="winMessage">
+      <br>
+      <div id="game_grid" class="hidden">
+        <div class="card">
+          <img id="img1" class="front_face" src="001.png" alt="">
+          <img class="back_face" src="back.webp" alt="">
+        </div>
+        <div class="card">
+          <img id="img2" class="front_face" src="002.png" alt="">
+          <img class="back_face" src="back.webp" alt="">
+        </div>
+        <div class="card">
+          <img id="img3" class="front_face" src="003.png" alt="">
+          <img class="back_face" src="back.webp" alt="">
+        </div>
+        <div class="card">
+          <img id="img4" class="front_face" src="001.png" alt="">
+          <img class="back_face" src="back.webp" alt="">
+        </div>
+        <div class="card">
+          <img id="img5" class="front_face" src="002.png" alt="">
+          <img class="back_face" src="back.webp" alt="">
+        </div>
+        <div class="card">
+          <img id="img6" class="front_face" src="003.png" alt="">
+          <img class="back_face" src="back.webp" alt="">
+        </div>
+        <br>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="vertical-center">
+        <button id="goldColorBtn" style="font-size: 30px; background-color:
+                                                gold;">Gold Theme</button>
+        <button id="lightColorBtn" style="font-size: 30px;">Light Theme</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
+
+</html>
