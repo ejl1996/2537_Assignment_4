@@ -31,12 +31,15 @@
       <h2>Number of Matches <span id="matches"></span></h2>
       <h2>Number of pair left <span id="left"></span></h2>
       <h2>Number of Clicks <span id="clicks"></span></h2>
-      <h2>You got <span id="timer"> </span> seconds. <span id="time"></span> second<span id="s">s</span> passed!</h1>
+      <h2>You got <span id="timer"> </span> seconds. <span id="time"></span> second<span id="s">s</span> passed!</h2>
     </section>
 
   </header>
   <div id="container">
     <div id="winMessage">
+      <div id="popup" class="popup">
+        <p id="popup-message" class="popup-message"></p>
+      </div>
       <br>
       <div id="game_grid" class="hidden">
         <div class="card">
@@ -63,17 +66,18 @@
           <img id="img6" class="front_face" src="003.png" alt="">
           <img class="back_face" src="back.webp" alt="">
         </div>
-        <br>
       </div>
       <br>
-      <br>
-      <br>
-      <div class="vertical-center">
-        <button id="goldColorBtn" style="font-size: 30px; background-color:
-                                                gold;">Gold Theme</button>
-        <button id="lightColorBtn" style="font-size: 30px;">Light Theme</button>
-      </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <div class="vertical-center">
+      <button id="goldColorBtn" style="font-size: 30px; background-color:
+                                                gold;">Gold Theme</button>
+      <button id="lightColorBtn" style="font-size: 30px;">Light Theme</button>
+    </div>
+  </div>
   </div>
   </div>
   </div>

@@ -178,15 +178,27 @@ const setup = () => {
     }, 2000);
   };
 
+  const showPopupMessage = (message, duration) => {
+    const popup = document.getElementById("popup");
+    const popupMessage = document.getElementById("popup-message");
+
+    popupMessage.textContent = message;
+    popup.style.display = "block";
+
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, duration);
+  };
+
   const startPowerUpMessage = () => {
     powerUpMessageInterval = setInterval(() => {
-      alert("Power up activated!");
+      showPopupMessage("Power up activated!", 500);
 
       // Display the power-up message using a popup or any other method you prefer
 
       // Flip all cards for one seconds
       flipAllCards();
-    }, 500);
+    }, 10000);
   };
 
   // Attach the handleCardClick function to the card click event
