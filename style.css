@@ -83,3 +83,19 @@ img {
   text-align: center;
   color: red;
 }
+
+.win-message {
+    background-color: #ffd700; /* Gold background color */
+    color: #ffffff; /* White text color */
+    font-family: "Arial", sans-serif; /* Font family */
+    font-size: 24px; /* Font size */
+    padding: 10px 20px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow */
+    text-align: center; /* Center text */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+  }
+
+  .win-message:hover {
+    background-color: #ffc500; /* Hover background color */
+  }

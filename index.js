@@ -68,7 +68,7 @@ const setup = () => {
   let clicks = 0; // Number of clicks
   let pairsLeft = totalPairs; // Number of pairs left to be matched
   let timerSeconds = 0;
-  const timeValue = 30; // Define the time value (in seconds) for the game
+  const timeValue = 100; // Define the time value (in seconds) for the game
   const powerUpInterval = 30;
 
   $("#start").on("click", function () {
@@ -102,9 +102,9 @@ const setup = () => {
   $("input[name='options']").on("change", function () {
     const difficulty = $(this).val();
     if (difficulty === "medium") {
-      addExtraCards(3);
+      addExtraCards(2);
     } else if (difficulty === "hard") {
-      addExtraCards(5);
+      addExtraCards(4);
     }
   });
 
@@ -155,7 +155,9 @@ const setup = () => {
         // Check if all cards matched
         if (matches === totalPairs) {
           console.log("You win!");
-          $("#winMessage").text("You win!");
+          $("#winMessage").text("You win!").addClass("win-message"); // Add a CSS class for styling
+          // Add decorative effects
+          $("#winMessage").animate({ fontSize: "40px", opacity: 0.5 }, 1000).animate({ fontSize: "30px", opacity: 1 }, 1000);
         }
       } else {
         console.log("no match");
@@ -236,11 +238,13 @@ const setup = () => {
 };
 
 const addExtraCards = (numCards) => {
+  const totalCards = 8 + numCards;
+
   let extraCards = "";
-  for (let i = 0; i < numCards; i++) {
+  for (let i = 8; i < totalCards; i++) {
     extraCards += `
       <div class="card extra-card">
-        <img id="img${i + 7}" class="front_face" src="" alt="">
+        <img id="img${i}" class="front_face" src="" alt="">
         <img class="back_face" src="back.webp" alt="">
       </div>
     `;
