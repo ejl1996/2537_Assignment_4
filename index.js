@@ -122,6 +122,11 @@ const setup = () => {
       return;
     }
 
+    if ($(this).hasClass("extra-card")) {
+      // Remove the flippable class from extra cards
+      $(this).removeClass("flippable");
+    }
+
     $(this).toggleClass("flip");
     clicks++; // Increment the number of clicks
 
@@ -135,8 +140,11 @@ const setup = () => {
         console.log("match");
         flippedCards.addClass("matched");
 
-        // Remove the back_face class from matched cards
-        flippedCards.find(".back_face").removeClass("back_face");
+        // Remove the flip class from the matched cards
+        flippedCards.removeClass("flip");
+
+        // Hide the back face element
+        flippedCards.find(".back_face").hide();
 
         // Remove the back image from matched cards
         flippedCards.find(".back_face").attr("src", "");
@@ -171,7 +179,7 @@ const setup = () => {
   };
 
   const flipAllCards = () => {
-    $(".card").addClass("flip");
+    $(".card").not(".matched").addClass("flip");
 
     setTimeout(() => {
       $(".card").removeClass("flip");
@@ -240,9 +248,70 @@ const addExtraCards = (numCards) => {
 
   $("#game_grid").append(extraCards);
 
-  //load extra cards' front face images
-  loadPokemonImages();
+  // Load extra cards' front face images
+  loadPokemonImages(numCards);
 };
+
+function loadPokemonImages(numCards) {
+  var pokemonImages = [];
+
+  // Make a request to the Pokemon API to fetch a larger number of Pokemon images
+  $.ajax({
+    url: 'https://pokeapi.co/api/v2/pokemon?limit=' + numCards * 2, // Fetch double the number of extra cards for matching pairs
+    cache: false
+  })
+    .done(function (response) {
+      var results = response.results;
+
+      // Extract the image URLs from the response and store them in the pokemonImages array
+      results.forEach(function (result) {
+        var pokemonName = result.name;
+        var imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + result.url.match(/\/\d+\//)[0].replace(/\//g, '') + '.png';
+
+        pokemonImages.push({
+          name: pokemonName,
+          url: imageUrl
+        });
+      });
+
+      // If the pokemonImages array has enough URLs for all cards, update the image sources
+      if (pokemonImages.length >= numCards * 2) {
+        updateCardImages(numCards);
+      }
+    })
+    .fail(function () {
+      console.error('Failed to load Pokemon data for extra cards');
+    });
+}
+
+function updateCardImages(numCards) {
+  $('.extra-card').each(function (index) {
+    var card = $(this);
+    var frontFace = card.find('.front_face');
+
+    // Generate random indices to select unique Pokemon images
+    var randomIndices = [];
+    while (randomIndices.length < 2) {
+      var randomIndex = Math.floor(Math.random() * pokemonImages.length);
+      if (!randomIndices.includes(randomIndex)) {
+        randomIndices.push(randomIndex);
+      }
+    }
+
+    // Set the image source of the front face to the randomly selected Pokemon image URLs
+    frontFace.attr('src', pokemonImages[randomIndices[0]].url);
+
+    // Store the Pokemon name as a data attribute for matching
+    card.attr('data-pokemon-name', pokemonImages[randomIndices[0]].name);
+
+    // Clone the front face image and assign the second randomly selected Pokemon image URL
+    var clonedFrontFace = frontFace.clone();
+    clonedFrontFace.attr('src', pokemonImages[randomIndices[1]].url);
+
+    // Append the cloned image as a back face to the card
+    card.append(clonedFrontFace);
+  });
+}
 
 const startPowerUpMessage = () => {
   powerUpMessageInterval = setInterval(() => {
