@@ -189,20 +189,22 @@ const setup = () => {
   };
 
   const showPopupMessage = (message, duration) => {
-    const popup = document.getElementById("popup");
-    const popupMessage = document.getElementById("popup-message");
+    const powerUpMessageContainer = $("#powerUpMessageContainer");
+    const popupMessage = $("<div>")
+      .addClass("power-up-message")
+      .text(message);
 
-    popupMessage.textContent = message;
-    popup.style.display = "block";
+    powerUpMessageContainer.empty().append(popupMessage);
+    powerUpMessageContainer.fadeIn();
 
     setTimeout(() => {
-      popup.style.display = "none";
+      powerUpMessageContainer.fadeOut();
     }, duration);
   };
 
   const startPowerUpMessage = () => {
     powerUpMessageInterval = setInterval(() => {
-      showPopupMessage("Power up activated!", 500);
+      showPopupMessage("Power up activated!", 1000);
 
       // Display the power-up message using a popup or any other method you prefer
 
@@ -215,7 +217,7 @@ const setup = () => {
   $(".card").on("click", handleCardClick);
 
   $("#goldColorBtn").on("click", function () {
-    $("#game_grid").toggleClass("gold-color");
+    $("#game_grid").addClass("gold-color");
   });
 
   $("#lightColorBtn").on("click", function () {
@@ -355,6 +357,9 @@ const resetGame = () => {
   // Load new Pokemon images and shuffle cards
   loadPokemonImages();
   shuffleCards();
+
+  // Remove power-up message
+  $("#powerUpMessageContainer").fadeOut();
 };
 
 $(document).ready(() => {

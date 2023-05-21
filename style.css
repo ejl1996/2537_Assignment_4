@@ -99,3 +99,19 @@ img {
   .win-message:hover {
     background-color: #ffc500; /* Hover background color */
   }
+
+  /* #powerUpMessageContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+} */
+
+.power-up-message {
+  font-size: 24px;
+  padding: 10px 20px;
+  background-color: lightgreen;
+  color: black;
+  border-radius: 5px;
+}
